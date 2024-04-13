@@ -42,6 +42,13 @@ function fish_right_prompt --description 'Write out the right prompt'
 	set -lx ___fish_git_prompt_color_done (set_color normal)
 
     set -l status_prompt_str "$(__prompt_exitstatus $last_status $last_pipestatus)"
+
+	set -lx __fish_git_prompt_char_stateseparator " $ARROW_LEFT_SEP "
+	set -lx __fish_git_prompt_color_dirtystate -b green red
+	set -lx __fish_git_prompt_color_branch -o -b green black
+	set -lx __fish_git_prompt_color_branch_detached -o -b green red
+	set -lx __fish_git_prompt_color_stagedstate -b green yellow
+	set -lx __fish_git_prompt_color_flags -o -b green blue
 	set -l vcs_prompt_str "$(fish_vcs_prompt " %s ")"
 
 	set -l prev_bg normal
