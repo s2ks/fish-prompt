@@ -38,10 +38,16 @@ function prompt_cwd
 
 	set path (string replace -r "^$realhome" '~' $path)
 
-	set -l m1 $PROMPT_CWD_MAX_START
-	set -l m2 $PROMPT_CWD_MAX_END
+	set -q prompt_cwd_max_start
+	or set -l prompt_cwd_max_start $PROMPT_CWD_MAX_START
 
-	# Escaped 'slash' (/) character 
+	set -q prompt_cwd_max_end
+	or set -l prompt_cwd_max_end $PROMPT_CWD_MAX_END
+
+	set -l m1 $prompt_cwd_max_start
+	set -l m2 $prompt_cwd_max_end
+
+	# escaped 'slash' (/) character 
 	set -l SLASH '\/'
 
 	# At start of line (^) match 0 or 1 (?) forward slash, 0 or more (*) non forward
