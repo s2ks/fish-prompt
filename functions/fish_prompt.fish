@@ -4,16 +4,6 @@ set GIT_BRANCH_ICON ""
 set RANGER_ICON ""
 set THREE_DOTS "…"
 
-set ESC "\e"
-set BOLD "1"
-
-set WHITE "5;255"
-set RED "5;124"
-
-set USER_BG "5;140"
-set USER_FG "5;232"
-set CWD_BG "5;240"
-set CWD_FG "5;255"
 set CWD_PATH_SEP " $ARROW_RIGHT_SEP "
 
 set PROMPT_CWD_MAX_START 2
@@ -57,7 +47,7 @@ function prompt_cwd
 	# At start of line (^) match 0 or 1 (?) forward slash, 0 or more (*) non forward
 	# slashes [^/] and 0 or 1 (?) forward slash -> at least once and at most $m1 times
 	# {1,$m1}
-	set -l regex_part1 "^($SLASH?[^/]+$SLASH?){1,$m1}"
+	set -l regex_part1 "^($SLASH?[^/]*$SLASH?){1,$m1}"
 
 	# At end of line ($) match 0 or 1 (?) forward slash at least one (+)
 	# non-forward slash [^/] and 0 or 1 (?) forward slash ->
@@ -77,7 +67,8 @@ function prompt_cwd
 	# If path is not empty then we need to shorten it, to display
 	# that it has been shortened we place a character showing three
 	# dots between part1 and part2 of the path
-	if [ -n $path ]
+	if [ -n $path ]; and set -q $path
+		#echo "$path is not empty"
 		set path "$part1$THREE_DOTS$part2"
 	else
 		set path "$part1$part2"
@@ -120,12 +111,6 @@ function prompt_cwd
 	set -l bold_elem $last_elem
 
 	set -l cwd_remain $path
-
-	#echo $path
-	#echo $part1
-	#echo $part2
-
-	#set -l col 54445e white
 
 	echo -sn (set_color $cwd_color) ' ' $first_elem \
 		$cwd_remain \
