@@ -17,7 +17,7 @@ function prompt_user
 	set -l host_str ""
     if set -q SSH_TTY; and set -q fish_color_host_remote
 		set prompt_user_color $fish_color_user_remote 
-		set host_str "@$(prompt_hostname) "
+		set host_str "@$hostname "
 	end
 
 	if functions -q fish_is_root_user; and fish_is_root_user
