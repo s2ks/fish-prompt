@@ -15,3 +15,10 @@ neovim is aliased to `vim`, and real (or retro) vim in turn is aliased to `rvim`
 # Gallery
 
 <img src="./img/fish.img"/>
+
+# TODO
+
+- Don't hard-code color theme
+- Clean up code
+- Fix bugs
+- Modular design of prompt 'elements'
