@@ -73,7 +73,7 @@ function prompt_cwd
 	# If path is not empty then we need to shorten it, to display
 	# that it has been shortened we place a character showing three
 	# dots between part1 and part2 of the path
-	if [ -n $path ]; and set -q $path
+	if [ -n "$path" ]
 		#echo "$path is not empty"
 		set path "$part1$THREE_DOTS$part2"
 	else
