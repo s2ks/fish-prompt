@@ -65,16 +65,15 @@ function prompt_cwd
 	set path (string replace -ra "$SLASH+" "$SLASH" $path)
 
 	set -l part1 (string match -r $regex_part1 $path)[1]
-	set path (string replace -r $regex_part1 '' $path)
+	set path (string replace -ra $regex_part1 '' $path)
 
 	set -l part2 (string match -r $regex_part2 $path)[1]
-	set path (string replace -r $regex_part2 '' $path)
+	set path (string replace -ra $regex_part2 '' $path)
 
 	# If path is not empty then we need to shorten it, to display
 	# that it has been shortened we place a character showing three
 	# dots between part1 and part2 of the path
 	if [ -n "$path" ]
-		#echo "$path is not empty"
 		set path "$part1$THREE_DOTS$part2"
 	else
 		set path "$part1$part2"
@@ -159,5 +158,5 @@ function fish_prompt --description 'Write out the prompt'
 	set last_bg $cwd_color[2]
 
 	
-    echo -n -s $prompt_user_str (prompt_cwd) $normal $suffix " "
+    echo -n -s $prompt_user_str $prompt_cwd_str $normal $suffix " "
 end
